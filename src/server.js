@@ -21,9 +21,7 @@ app.use(express.urlencoded({extended:false}));
 //Gloval Values
 
 //Routes
-app.get('/', (req, res) => {
-    res.render('index');
-});
+app.use(require('./routes/index'));
 
 
 //Static Files
