@@ -1,16 +1,21 @@
 const notesController = {};
+const Note = require('../medels/Note');
 
 notesController.renderNoteForm = (req, res) => {
     res.render('notes/new-note');
 };
 
-notesController.createNewNote = (req, res) => {
-    console.log(req.body)
+notesController.createNewNote = async(req, res) => {
+    const { title, description } = req.body;
+    const newNote = new Note({ title, description });
+    //console.log(newNote);
+     await newNote.save();
     res.send('New Note')
 };
 
-notesController.renderNotes = (req, res) => {
-    res.send('Render Notes');
+notesController.renderNotes = async(req, res) => {
+    const notes = await Note.find().lean();
+    res.render('notes/all-notes',{notes});
 };
 
 notesController.renderEditForm = (req, res) => {
