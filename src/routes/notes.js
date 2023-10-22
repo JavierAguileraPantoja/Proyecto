@@ -5,7 +5,7 @@ const { renderNoteForm, createNewNote, renderNotes, renderEditForm, updateNote, 
 
 //new note
 router.get('/notes/add', renderNoteForm);
-router.post('notes/add', createNewNote);
+router.post('/notes/new-note', createNewNote);
 
 //get all notes
 router.get('/notes', renderNotes);
@@ -15,6 +15,6 @@ router.get('/notes/edit/:id', renderEditForm);
 router.put('/notes/edit/:id', updateNote);
 
 //Delete Notes
-router.delete('/notes/delete/:id',deleteNote);
+router.delete('/notes/delete/:id', deleteNote);
 
 module.exports = router;
