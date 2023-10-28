@@ -1,4 +1,5 @@
 const usersController = {};
+const passport = require('passport');
 const User = require('../medels/User');
 
 usersController.renderSignUpForm = (req, res) => {
@@ -37,12 +38,24 @@ usersController.signup = async (req, res) => {
 usersController.renderSignInForm = (req, res) => {
     res.render('users/signin');
 };
-usersController.signin = (req, res) => {
-    res.send('Pagina de Signin');
-};
+
+//usersController.signin = (req, res) => {
+ //   res.send('Pagina de Signin');
+//};
+usersController.signin = passport.authenticate('local',{
+    failureRedirect: '/users/signin',
+    successRedirect: '/notes',
+    failureFlash: true
+});
 
 usersController.logout = (req, res) => {
-    res.send('Pagina de Logout');
+    req.logout( (err) => {
+
+        if (err) { return next(err); }
+        req.flash( "success_msg" , "Session cerrada" );
+        res.redirect( "/users/signin" );
+
+    });
 };
 
 
