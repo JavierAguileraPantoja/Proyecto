@@ -7,6 +7,6 @@ const { NOTES_APP_MONGODB_HOST, NOTES_APP_MONGODB_DB } = process.env;
 //const NOTES_APP_MONGODB_DB = process.env.NOTES_APP_MONGODB_DB;
 
 const MONGODB_URI = `${NOTES_APP_MONGODB_HOST}/${NOTES_APP_MONGODB_DB}`
-mongoose.connect(MONGODB_URI)
+mongoose.connect('mongodb://mongo:27017/')
     .then(db => console.log('MONGO ONLINE'))
     .catch(err => console.log(err));
